@@ -36,7 +36,6 @@ export class ApiClient {
   }
 
   async getWeather({ location = 'London' }) {
-    console.log(location);
     if (location === 'London') {
       console.log(data);
       return { data };

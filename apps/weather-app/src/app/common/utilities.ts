@@ -1,7 +1,7 @@
 'use client';
 
 import { DateTime } from 'luxon';
-import { createContext, SetStateAction } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 import { ApiClientInterface } from './ApiClient';
 
 type LocationQueryState = 'awaiting' | 'accepted' | 'rejected' | 'invalid';
@@ -33,12 +33,13 @@ export const MetricContext = createContext<
   | {
       client: ApiClientInterface;
       toggle: boolean;
-      setToggle: (toggle: boolean) => void;
+      setToggle: Dispatch<SetStateAction<boolean>>;
     }
   | undefined
 >(undefined);
-export const tempF = (value: number) => `${value}°F`;
-export const tempC = (value: number) => `${((value - 32) * 5) / 9}°C`;
+export const tempF = (value: number) => `${Math.round(value)}°F`;
+export const tempC = (value: number) =>
+  `${Math.round(((value - 32) * 5) / 9)}°C`;
 
 export const dateFromEpoch = (epoch: number | undefined): DateTime => {
   return epoch ? DateTime.fromSeconds(epoch) : DateTime.now();

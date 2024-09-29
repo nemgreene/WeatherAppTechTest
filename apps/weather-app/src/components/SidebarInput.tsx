@@ -37,7 +37,6 @@ export default function SidebarInput({
   const onSubmit: SubmitHandler<IFormInputs> = async ({ LocationName }) => {
     if (client && LocationName) {
       const res = await client.getWeather({ location: LocationName });
-      console.log(res.data);
       if (res.data) {
         setData(res.data);
         reset();
@@ -48,6 +47,7 @@ export default function SidebarInput({
     }
     if (errors?.LocationName) {
       console.log(errors);
+      showToast('error', errors.LocationName.message);
     }
   };
 
@@ -82,7 +82,7 @@ export default function SidebarInput({
             rules={{
               required: { value: true, message: 'Enter Location' },
               minLength: { value: 1, message: 'Enter Location' },
-              pattern: { value: validCityRegex, message: 'Invalid Input' },
+              pattern: { value: validCityRegex, message: 'Invalid Location' },
             }}
             render={({
               field: { ref, ...newField },
@@ -131,10 +131,7 @@ export default function SidebarInput({
         </form>
       </Box>
       {!!errors && (
-        <Typography
-          variant="h4"
-          sx={{ color: 'red', position: 'absolute', bottom: '-100%' }}
-        >
+        <Typography variant="h4" sx={{ color: 'red', pt: 2 }}>
           {errors.LocationName?.message}
         </Typography>
       )}

@@ -3,8 +3,15 @@ import React, { useContext, useEffect } from 'react';
 import MetricButton from './MetricButton';
 import MetricSlider from './MetricSlider';
 import ForecastCards from './ForecastCards';
-import { LocationInterface, tempC, tempF } from '../app/common/utilities';
+import {
+  LocationInterface,
+  MetricContext,
+  tempC,
+  tempF,
+} from '../app/common/utilities';
 import MetricCard from './MetricCard';
+import RoundedButton from './RoundedButton';
+import { useTheme } from '@emotion/react';
 const { DateTime } = require('luxon');
 
 export default function Dash({
@@ -22,6 +29,10 @@ export default function Dash({
   const sunset = sunsetEpoch
     ? DateTime.fromSeconds(sunsetEpoch)
     : DateTime.now();
+
+  const context = useContext(MetricContext);
+  const { toggle, setToggle } = context ? context : {};
+  const theme: any = useTheme();
   return (
     <Box sx={{ width: '100%', p: 12 }}>
       {/* Header */}
@@ -30,9 +41,33 @@ export default function Dash({
           <Box sx={{ display: 'flex', flex: 1 }}>
             <Typography variant="h4">Day Overview</Typography>
           </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <MetricButton />
-            <MetricButton />
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+            <RoundedButton
+              onClick={() => {
+                setToggle && setToggle((p) => !p);
+              }}
+              sx={{
+                bgcolor: toggle
+                  ? theme.palette.action.activeButton
+                  : theme.palette.action.inactiveButton,
+              }}
+            >
+              <Typography variant="h5">°C</Typography>
+            </RoundedButton>
+            <RoundedButton
+              onClick={() => {
+                setToggle && setToggle((p) => !p);
+              }}
+              sx={{
+                bgcolor: !toggle
+                  ? theme.palette.action.activeButton
+                  : theme.palette.action.inactiveButton,
+              }}
+            >
+              <Typography variant="h5">°F</Typography>
+            </RoundedButton>
+            {/* <MetricButton /> */}
+            {/* <MetricButton /> */}
           </Box>
         </Box>
       </Box>
@@ -49,12 +84,12 @@ export default function Dash({
         <MetricSlider
           label={'Humidity'}
           color={'humiditySlider'}
-          value={data?.currentConditions?.humidity}
+          value={Math.round(data?.currentConditions?.humidity) || 50}
         />
         <MetricSlider
           label={'Cloud Cover'}
           color={'cloudSlider'}
-          value={data?.currentConditions?.cloudcover}
+          value={Math.round(data?.currentConditions?.cloudcover) || 50}
         />
       </Box>
 
@@ -82,18 +117,20 @@ export default function Dash({
         />
         <MetricCard
           label={'Sunrise'}
-          value1={sunrise.toFormat('T')}
-          value2={sunrise.toFormat('t')}
+          value1={sunrise.toFormat('t')}
+          value2={sunrise.toFormat('T')}
         />
         <MetricCard
           label={'Sunset'}
-          value1={sunset.toFormat('T')}
-          value2={sunset.toFormat('t')}
+          value1={sunset.toFormat('t')}
+          value2={sunset.toFormat('T')}
         />
       </Box>
 
       <Box sx={{ height: '33vh' }}>
-        <Typography variant="h4">5 Day Forecast</Typography>
+        <Typography sx={{ pb: 5 }} variant="h4">
+          5 Day Forecast
+        </Typography>
         <Box>{data.days && <ForecastCards data={data.days} />}</Box>
       </Box>
     </Box>

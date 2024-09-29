@@ -2,7 +2,7 @@ import { Box, Button, Input, Typography } from '@mui/material';
 import React, { SetStateAction } from 'react';
 import MetricToggle from './MetricToggle';
 import ForecastIcon from './ForecastIcon';
-import IconLookup from '../app/icons/IconLookup';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   dateFormat,
   dateFromEpoch,
@@ -28,6 +28,18 @@ export default function SideBar({
   setData: SetStateAction<any>;
 }) {
   const dateTime = dateFromEpoch(data?.datetimeEpoch);
+  const locationHeadine = data?.address.split(',')[0];
+  const displayLocation =
+    locationHeadine && isNaN(Number(locationHeadine)) ? (
+      locationHeadine
+    ) : (
+      <Box className="utilCenter">
+        <LocationOnIcon sx={{ fontSize: 40, mr: 1 }} />
+        Your Location
+      </Box>
+    );
+
+  console.log(locationHeadine, Number(locationHeadine));
   return (
     <Box
       sx={{
@@ -52,7 +64,7 @@ export default function SideBar({
           gap: 2,
         }}
       >
-        <Typography variant="h2">{data?.address.split(',')[0]}</Typography>
+        <Typography variant="h2">{displayLocation}</Typography>
         <Typography variant="h4">{dateFormat(dateTime)}</Typography>
         <ForecastIcon iconName={data.conditions} />
         <Box>

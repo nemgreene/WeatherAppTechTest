@@ -27,7 +27,7 @@ export default function MetricCard({
         }}
       >
         <Typography variant="h5">{label}</Typography>
-        <MetricToggle variant="h4" value1={value1} value2={'50'} />
+        <MetricToggle variant="h4" value1={value1} value2={value2} />
         {/* <Typography variant="h6">{value}</Typography> */}
       </Box>
     </Card>

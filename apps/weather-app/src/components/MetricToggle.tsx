@@ -12,7 +12,9 @@ export default function MetricToggle({
   // variant: string;
 } & any) {
   const context = useContext(MetricContext);
-  const { toggle, setToggle } = context ? context : {};
+  const { toggle } = context ? context : {};
 
-  return <Typography {...(rest && rest)}>{value1}</Typography>;
+  return (
+    <Typography {...(rest && rest)}>{!toggle ? value1 : value2}</Typography>
+  );
 }

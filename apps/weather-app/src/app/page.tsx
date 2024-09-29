@@ -26,26 +26,31 @@ export default function Index() {
 
   const client = new ApiClient();
 
-  const fetchWeather = async () => {
-    const res = await client.getWeather({ location: 'London' });
+  const fetchWeather = async (location?: string) => {
+    const res = await client.getWeather({ location });
     setData(res.data);
   };
 
   useEffect(() => {
-    // fetchWeather();
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(
-    //     (position: GeolocationPosition) => {
-    //       setLocation({ data: position, state: 'accepted' });
-    //     },
-    //     () => {
-    //       setLocation({ data: undefined, state: 'rejected' });
-    //     },
-    //     locationOptions
-    //   );
-    // } else {
-    //   setLocation({ data: undefined, state: 'invalid' });
-    // }
+    fetchWeather();
+    return;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => {
+          setLocation({ data: position, state: 'accepted' });
+          const { latitude, longitude } = position?.coords;
+          if (latitude && longitude) {
+            fetchWeather(`${latitude},${longitude}`);
+          }
+        },
+        () => {
+          setLocation({ data: undefined, state: 'rejected' });
+        },
+        locationOptions
+      );
+    } else {
+      setLocation({ data: undefined, state: 'invalid' });
+    }
   }, []);
 
   return (
@@ -64,7 +69,7 @@ export default function Index() {
           width: '100vw',
         }}
       >
-        <Box sx={{ height: '100vh', width: '33vw', minWidth: '33vw' }}>
+        <Box sx={{ height: '100vh', width: '25vw', minWidth: '25vw' }}>
           {data ? (
             <SideBar
               location={location}
@@ -75,10 +80,10 @@ export default function Index() {
               }}
             />
           ) : (
-            <SideBarFallback location={location} />
+            <SideBarFallback location={location} setData={setData} />
           )}
         </Box>
-        <Box sx={{ height: '100vh', width: '67vw', minWidth: '67vw' }}>
+        <Box sx={{ height: '100vh', width: '75vw', minWidth: '75vw' }}>
           {data ? <Dash data={data} /> : <DashFallback location={location} />}
         </Box>
       </Box>
