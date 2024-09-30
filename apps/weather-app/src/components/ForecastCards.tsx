@@ -17,7 +17,7 @@ export default function ForecastCards({ data }: { data: {}[] }) {
       sx={{ justifyContent: 'center' }}
     >
       {data.slice(1, 6).map((v, i) => (
-        <Grid2 size={1}>
+        <Grid2 size={1} key={i}>
           <ForecastCard data={v} key={i} />
         </Grid2>
       ))}

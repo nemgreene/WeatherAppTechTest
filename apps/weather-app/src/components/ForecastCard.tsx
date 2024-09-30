@@ -1,8 +1,9 @@
 import { Box, Card, CardContent, Grid2, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   dateFormat,
   dateFromEpoch,
+  MetricContext,
   tempC,
   tempF,
 } from '../app/common/utilities';
@@ -13,8 +14,15 @@ import ForecastIcon from './ForecastIcon';
 export default function ForecastCard({ data }: any) {
   const { datetimeEpoch, conditions, tempmax, tempmin } = data;
   const date = dateFromEpoch(datetimeEpoch);
+  const context = useContext(MetricContext);
+  const { setToggle } = context ? context : {};
   return (
-    <Card sx={{ pl: '0 !important', pr: '0 !important' }}>
+    <Card
+      onClick={() => {
+        setToggle && setToggle((p) => !p);
+      }}
+      sx={{ pl: '0 !important', pr: '0 !important', cursor: 'pointer' }}
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <Box className="utilCenter">
           <Typography variant="h6">{dateFormat(date)}</Typography>

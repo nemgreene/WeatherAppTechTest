@@ -1,9 +1,9 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import React from 'react';
+import React, { useContext } from 'react';
 import { TypePredicateKind } from 'typescript';
 import MetricSlider from './MetricSlider';
 import MetricToggle from './MetricToggle';
-import { tempF } from '../app/common/utilities';
+import { MetricContext, tempF } from '../app/common/utilities';
 
 export default function MetricCard({
   value1,
@@ -14,8 +14,15 @@ export default function MetricCard({
   value1: number | string;
   value2: number | string;
 }) {
+  const context = useContext(MetricContext);
+  const { setToggle } = context ? context : {};
   return (
-    <Card sx={{ width: '100%' }}>
+    <Card
+      onClick={() => {
+        setToggle && setToggle((p) => !p);
+      }}
+      sx={{ width: '100%', cursor: 'pointer' }}
+    >
       <Box
         sx={{
           flexDirection: 'column',

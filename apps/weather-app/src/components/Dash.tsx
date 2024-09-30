@@ -142,7 +142,9 @@ export default function Dash({
         </Grid2>
         {/* Forecast cards */}
         <Grid2 size={12} sx={{ pt: 1 }}>
-          <Typography variant="h4">5 Day Forecast</Typography>
+          <Typography variant="h4" sx={{ textAlign: 'left' }}>
+            5 Day Forecast
+          </Typography>
         </Grid2>
         {data.days && <ForecastCards data={data.days} />}
       </Grid2>

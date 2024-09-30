@@ -1,5 +1,5 @@
 import { Box, Button, Input, Typography } from '@mui/material';
-import React, { SetStateAction } from 'react';
+import React, { SetStateAction, useContext } from 'react';
 import MetricToggle from './MetricToggle';
 import ForecastIcon from './ForecastIcon';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,6 +7,7 @@ import {
   dateFormat,
   dateFromEpoch,
   LocationInterface,
+  MetricContext,
   tempC,
   tempF,
 } from '../app/common/utilities';
@@ -40,6 +41,10 @@ export default function SideBar({
     );
 
   const iconDims = { xs: 150, sm: 200, md: 200, lg: 250 };
+
+  const context = useContext(MetricContext);
+  const { setToggle } = context ? context : {};
+
   return (
     <Box
       sx={{
@@ -55,6 +60,9 @@ export default function SideBar({
         {/* <Input variant></Input> */}
       </Box>
       <Box
+        onClick={() => {
+          setToggle && setToggle((p) => !p);
+        }}
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -62,6 +70,7 @@ export default function SideBar({
           justifyContent: 'center',
           alignItems: 'center',
           gap: 2,
+          cursor: 'pointer',
         }}
       >
         <Typography variant="h3" sx={{ whiteSpace: 'wrap' }}>

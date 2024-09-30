@@ -32,6 +32,8 @@ export default function Index() {
   };
 
   useEffect(() => {
+    fetchWeather();
+    return;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
