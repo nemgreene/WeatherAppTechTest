@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import MetricSlider from './MetricSlider';
 import ForecastCards from './ForecastCards';
 import {
+  dateFromEpoch,
   defaultColumnSpacing,
   defaultRowSpacing,
   MetricContext,
@@ -24,12 +25,8 @@ export default function Dash({
   };
 }) {
   const { tempmax, tempmin, sunriseEpoch, sunsetEpoch } = data?.days[0];
-  const sunrise = sunriseEpoch
-    ? DateTime.fromSeconds(sunriseEpoch)
-    : DateTime.now();
-  const sunset = sunsetEpoch
-    ? DateTime.fromSeconds(sunsetEpoch)
-    : DateTime.now();
+  const sunrise = dateFromEpoch(sunriseEpoch);
+  const sunset = dateFromEpoch(sunsetEpoch);
 
   const { toggle, setToggle }: MetricContextInterface =
     useContext(MetricContext);

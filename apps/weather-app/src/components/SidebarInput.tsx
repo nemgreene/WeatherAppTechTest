@@ -24,7 +24,6 @@ export default function SidebarInput({
   const {
     handleSubmit,
     control,
-    watch,
     reset,
     setFocus,
 

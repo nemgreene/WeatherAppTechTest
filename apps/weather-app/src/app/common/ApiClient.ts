@@ -13,6 +13,8 @@ export class ApiClient {
     this.baseUrl =
       'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/';
   }
+
+  //base url call
   async _apiCall({ url, headers, params }: RequestData) {
     try {
       const res = await axios({
@@ -34,11 +36,8 @@ export class ApiClient {
     }
   }
 
+  //fecth weather call
   async getWeather({ location = 'London' }) {
-    // if (location === 'London') {
-    //   console.log(data);
-    //   return { data };
-    // }
     return await this._apiCall({ url: location });
   }
 }
