@@ -31,7 +31,10 @@ Visit the project deployed to vercel [here](https://weather-app-tech-test-lnhgfb
 
 #### Clone and install
 
-
+Clone the project down and navigate to the root
+Create `.env` file, and store API key as `NEXT_PUBLIC_WEATHER_API_KEY`
+Install the project dependencies with `npm i`
+Start the project in development with `npx nx run weather-app:dev`
 
 ### Implementation Details
 
