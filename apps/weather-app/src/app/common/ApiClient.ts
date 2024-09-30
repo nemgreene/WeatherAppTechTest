@@ -17,6 +17,10 @@ export class ApiClient {
   //base url call
   async _apiCall({ url, headers, params }: RequestData) {
     try {
+      if (!process.env.NEXT_PUBLIC_WEATHER_API_KEY) {
+        showToast('error', 'No API key found');
+        throw { status: 'No API key found' };
+      }
       const res = await axios({
         url: `${url}?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
         method: 'GET',
