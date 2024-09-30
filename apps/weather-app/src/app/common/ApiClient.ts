@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { WeatherApiResponse } from './utilities';
+import { showToast, WeatherApiResponse } from './utilities';
 import data from './dummy.json';
 interface RequestData {
   url: string;
@@ -28,7 +28,7 @@ export class ApiClient {
       if (res.status >= 200 && res.status < 300) {
         return res;
       }
-      console.log('Bad status', res);
+      showToast('error', 'Bad Status');
       throw { status: res.status };
     } catch (error) {
       return { error, data: undefined };
@@ -36,10 +36,10 @@ export class ApiClient {
   }
 
   async getWeather({ location = 'London' }) {
-    if (location === 'London') {
-      console.log(data);
-      return { data };
-    }
+    // if (location === 'London') {
+    //   console.log(data);
+    //   return { data };
+    // }
     return await this._apiCall({ url: location });
   }
 }
