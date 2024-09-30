@@ -22,12 +22,17 @@ export default function MetricCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 2,
-          p: 4,
         }}
       >
-        <Typography variant="h5">{label}</Typography>
-        <MetricToggle variant="h4" value1={value1} value2={value2} />
+        <Typography variant="h5" sx={{ whiteSpace: 'nowrap' }}>
+          {label}
+        </Typography>
+        <MetricToggle
+          variant="h4"
+          value1={value1}
+          value2={value2}
+          sx={{ whiteSpace: 'nowrap' }}
+        />
         {/* <Typography variant="h6">{value}</Typography> */}
       </Box>
     </Card>

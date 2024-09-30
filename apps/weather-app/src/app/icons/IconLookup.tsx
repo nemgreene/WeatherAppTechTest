@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import ClearDay from './ClearDay';
 import ClearNight from './ClearNight';
 import Cloudy from './Cloudy';
@@ -6,7 +7,13 @@ import PartlyCloudyNight from './PartlyCloudyNight';
 import Rain from './Rain';
 import Snow from './Snow';
 
-export default function IconLookup({ iconName }: { iconName: string }) {
+export default function IconLookup({
+  iconName,
+  sx,
+}: {
+  iconName: string;
+  sx?: any;
+}) {
   const dict: any = {
     snow: <Snow />,
     rain: <Rain />,
@@ -20,5 +27,9 @@ export default function IconLookup({ iconName }: { iconName: string }) {
     default: <Cloudy />,
   };
 
-  return Object.keys(dict).includes(iconName) ? dict[iconName] : dict.default;
+  return (
+    <Box className="utilCenter" sx={{ height: '100%', width: '100%' }}>
+      {Object.keys(dict).includes(iconName) ? dict[iconName] : dict.default}
+    </Box>
+  );
 }

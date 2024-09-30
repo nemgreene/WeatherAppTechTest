@@ -1,9 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid2, Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import MetricButton from './MetricButton';
 import MetricSlider from './MetricSlider';
 import ForecastCards from './ForecastCards';
 import {
+  defaultColumnSpacing,
+  defaultGap,
+  defaultPadding,
+  defaultRowSpacing,
   LocationInterface,
   MetricContext,
   tempC,
@@ -34,105 +38,112 @@ export default function Dash({
   const { toggle, setToggle } = context ? context : {};
   const theme: any = useTheme();
   return (
-    <Box sx={{ width: '100%', p: 12 }}>
-      {/* Header */}
-      <Box sx={{ pb: 4 }}>
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-          <Box sx={{ display: 'flex', flex: 1 }}>
-            <Typography variant="h4">Day Overview</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
-            <RoundedButton
-              onClick={() => {
-                setToggle && setToggle((p) => !p);
-              }}
-              sx={{
-                bgcolor: toggle
-                  ? theme.palette.action.activeButton
-                  : theme.palette.action.inactiveButton,
-              }}
-            >
-              <Typography variant="h5">°C</Typography>
-            </RoundedButton>
-            <RoundedButton
-              onClick={() => {
-                setToggle && setToggle((p) => !p);
-              }}
-              sx={{
-                bgcolor: !toggle
-                  ? theme.palette.action.activeButton
-                  : theme.palette.action.inactiveButton,
-              }}
-            >
-              <Typography variant="h5">°F</Typography>
-            </RoundedButton>
-            {/* <MetricButton /> */}
-            {/* <MetricButton /> */}
-          </Box>
-        </Box>
-      </Box>
-      {/* SLiders */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%',
-          gap: 5,
-          justifyContent: 'space-evenly',
-        }}
+    <Box
+      sx={{
+        width: '100%',
+        height: 'fit-content',
+        // height: { xs: 'unset', md: '100vh' },
+        pt: { xs: 8, md: 3, lg: 5 },
+        pb: { xs: 8, md: 3, lg: 5 },
+        pl: { xs: 4, sm: 6, md: 8, lg: 11 },
+        pr: { xs: 4, sm: 6, md: 8, lg: 11 },
+      }}
+    >
+      <Grid2
+        // sx={{ height: '100vh' }}
+        container
+        columns={12}
+        columnSpacing={defaultColumnSpacing}
+        rowSpacing={defaultRowSpacing}
       >
-        <MetricSlider
-          label={'Humidity'}
-          color={'humiditySlider'}
-          value={Math.round(data?.currentConditions?.humidity) || 50}
-        />
-        <MetricSlider
-          label={'Cloud Cover'}
-          color={'cloudSlider'}
-          value={Math.round(data?.currentConditions?.cloudcover) || 50}
-        />
-      </Box>
-
-      {/* Cards */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          width: '100%',
-          gap: 5,
-          justifyContent: 'space-evenly',
-          pt: 5,
-          pb: 5,
-        }}
-      >
-        <MetricCard
-          label={'Min Temp'}
-          value1={tempF(tempmax)}
-          value2={tempC(tempmax)}
-        />
-        <MetricCard
-          label={'Max Temp'}
-          value1={tempF(tempmin)}
-          value2={tempC(tempmin)}
-        />
-        <MetricCard
-          label={'Sunrise'}
-          value1={sunrise.toFormat('t')}
-          value2={sunrise.toFormat('T')}
-        />
-        <MetricCard
-          label={'Sunset'}
-          value1={sunset.toFormat('t')}
-          value2={sunset.toFormat('T')}
-        />
-      </Box>
-
-      <Box sx={{ height: '33vh' }}>
-        <Typography sx={{ pb: 5 }} variant="h4">
-          5 Day Forecast
-        </Typography>
-        <Box>{data.days && <ForecastCards data={data.days} />}</Box>
-      </Box>
+        {/* Banner */}
+        <Grid2 size={12}>
+          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Box sx={{ display: 'flex', flex: 1 }}>
+              <Typography variant="h4">Day Overview</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+              <RoundedButton
+                onClick={() => {
+                  setToggle && setToggle((p) => !p);
+                }}
+                sx={{
+                  bgcolor: toggle
+                    ? theme.palette.action.activeButton
+                    : theme.palette.action.inactiveButton,
+                }}
+              >
+                <Typography variant="h5">°C</Typography>
+              </RoundedButton>
+              <RoundedButton
+                onClick={() => {
+                  setToggle && setToggle((p) => !p);
+                }}
+                sx={{
+                  bgcolor: !toggle
+                    ? theme.palette.action.activeButton
+                    : theme.palette.action.inactiveButton,
+                }}
+              >
+                <Typography variant="h5">°F</Typography>
+              </RoundedButton>
+              {/* <MetricButton /> */}
+              {/* <MetricButton /> */}
+            </Box>
+          </Box>
+        </Grid2>
+        {/* Sliders */}
+        <Grid2 size={6}>
+          <MetricSlider
+            label={'Humidity'}
+            color={'humiditySlider'}
+            value={Math.round(data?.currentConditions?.humidity) || 50}
+          />
+        </Grid2>
+        <Grid2 size={6}>
+          <MetricSlider
+            label={'Cloud Cover'}
+            color={'cloudSlider'}
+            value={Math.round(data?.currentConditions?.cloudcover) || 50}
+          />
+        </Grid2>
+        {/* Cards */}
+        <Grid2 size={12} container>
+          <Grid2 size={{ xs: 6, md: 3 }}>
+            <MetricCard
+              label={'Min Temp'}
+              value1={tempF(tempmax)}
+              value2={tempC(tempmax)}
+            />
+          </Grid2>
+          <Grid2 size={{ xs: 6, md: 3 }}>
+            <MetricCard
+              label={'Max Temp'}
+              value1={tempF(tempmin)}
+              value2={tempC(tempmin)}
+            />
+          </Grid2>
+          <Grid2 size={{ xs: 6, md: 3 }}>
+            <MetricCard
+              label={'Sunrise'}
+              value1={sunrise.toFormat('t')}
+              value2={sunrise.toFormat('T')}
+            />
+          </Grid2>
+          <Grid2 size={{ xs: 6, md: 3 }}>
+            <MetricCard
+              label={'Sunset'}
+              value1={sunset.toFormat('t')}
+              value2={sunset.toFormat('T')}
+            />
+          </Grid2>
+        </Grid2>
+        {/* Forecast cards */}
+        <Grid2 size={12} sx={{ pt: 1 }}>
+          <Typography variant="h4">5 Day Forecast</Typography>
+        </Grid2>
+        {data.days && <ForecastCards data={data.days} />}
+      </Grid2>
     </Box>
   );
 }

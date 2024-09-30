@@ -21,7 +21,7 @@ export default function Index() {
     data: undefined,
   });
 
-  const [metricToggle, setMetricToggle] = useState<boolean>(false);
+  const [metricToggle, setMetricToggle] = useState<boolean>(true);
   const [data, setData] = useState<any>(undefined);
 
   const client = new ApiClient();
@@ -32,8 +32,6 @@ export default function Index() {
   };
 
   useEffect(() => {
-    fetchWeather();
-    return;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {
@@ -53,6 +51,13 @@ export default function Index() {
     }
   }, []);
 
+  const sideBarWidth = {
+    width: { xs: '100%', md: '33vw' },
+    minHeight: '600px',
+    height: { xs: '100vh', md: 'unset' },
+  };
+  const dashWidth = { width: { xs: '100%', md: '67vw' } };
+
   return (
     <MetricContext.Provider
       value={{
@@ -64,12 +69,14 @@ export default function Index() {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'row',
-          height: '100vh',
+          flexDirection: { xs: 'column', md: 'row' },
+          minHeight: { xs: '600px', md: '100vh' },
+          minWidth: '350px',
           width: '100vw',
+          height: 'fit-content',
         }}
       >
-        <Box sx={{ height: '100vh', width: '25vw', minWidth: '25vw' }}>
+        <Box sx={{ ...sideBarWidth }}>
           {data ? (
             <SideBar
               location={location}
@@ -83,7 +90,7 @@ export default function Index() {
             <SideBarFallback location={location} setData={setData} />
           )}
         </Box>
-        <Box sx={{ height: '100vh', width: '75vw', minWidth: '75vw' }}>
+        <Box sx={{ height: 'fit-content', ...dashWidth }}>
           {data ? <Dash data={data} /> : <DashFallback location={location} />}
         </Box>
       </Box>

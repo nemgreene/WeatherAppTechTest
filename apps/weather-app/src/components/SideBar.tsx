@@ -35,11 +35,11 @@ export default function SideBar({
     ) : (
       <Box className="utilCenter">
         <LocationOnIcon sx={{ fontSize: 40, mr: 1 }} />
-        Your Location
+        You
       </Box>
     );
 
-  console.log(locationHeadine, Number(locationHeadine));
+  const iconDims = { xs: 150, sm: 200, md: 200, lg: 250 };
   return (
     <Box
       sx={{
@@ -64,9 +64,14 @@ export default function SideBar({
           gap: 2,
         }}
       >
-        <Typography variant="h2">{displayLocation}</Typography>
+        <Typography variant="h3" sx={{ whiteSpace: 'wrap' }}>
+          {displayLocation}
+        </Typography>
         <Typography variant="h4">{dateFormat(dateTime)}</Typography>
-        <ForecastIcon iconName={data.conditions} />
+        <ForecastIcon
+          iconName={data.conditions}
+          sx={{ height: iconDims, width: iconDims }}
+        />
         <Box>
           <MetricToggle
             variant={'h1'}

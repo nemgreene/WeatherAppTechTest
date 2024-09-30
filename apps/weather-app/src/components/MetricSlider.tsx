@@ -20,13 +20,15 @@ export default function MetricSlider({
   const theme: any = useTheme();
   return (
     <Box sx={{ width: '100%' }}>
-      <Card>
+      <Card sx={{ p: 0, pb: 0 }}>
         <CardContent
           sx={{
+            pt: 0,
             flexDirection: 'column',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            pb: '0 !important',
           }}
         >
           <Typography variant="h5">{label}</Typography>

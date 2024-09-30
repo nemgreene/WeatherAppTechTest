@@ -105,3 +105,8 @@ export const showToast = (
       return toast(content, optionsToApply);
   }
 };
+
+export const defaultColumnSpacing = { xs: 2, md: 1, lg: 2 };
+export const defaultRowSpacing = { xs: 2, md: 1, lg: 4 };
+export const defaultGap = { xs: 2, md: 4, lg: 5 };
+export const defaultPadding = { xs: 2, md: 4 };

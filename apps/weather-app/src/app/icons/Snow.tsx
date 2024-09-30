@@ -1,8 +1,8 @@
 export default function Snow() {
   return (
     <svg
-      width="145"
-      height="145"
+      // width="145"
+      // height="145"
       viewBox="0 0 145 145"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
