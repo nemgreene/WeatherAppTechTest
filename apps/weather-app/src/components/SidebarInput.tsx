@@ -51,9 +51,6 @@ export default function SidebarInput({
     }
   };
 
-  useEffect(() => {
-    setFocus('LocationName');
-  });
   return (
     <Box
       className="utilCenter"

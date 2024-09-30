@@ -90,7 +90,7 @@ export default function Index() {
             <SideBarFallback location={location} setData={setData} />
           )}
         </Box>
-        <Box sx={{ height: 'fit-content', ...dashWidth }}>
+        <Box sx={{ minHeight: 'fit-content', height: 'unset', ...dashWidth }}>
           {data ? <Dash data={data} /> : <DashFallback location={location} />}
         </Box>
       </Box>

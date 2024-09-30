@@ -39,9 +39,11 @@ export default function Dash({
   const theme: any = useTheme();
   return (
     <Box
+      className="utilCenter"
       sx={{
         width: '100%',
-        height: 'fit-content',
+        minHeight: 'fit-content',
+        height: '100%',
         // height: { xs: 'unset', md: '100vh' },
         pt: { xs: 8, md: 3, lg: 5 },
         pb: { xs: 8, md: 3, lg: 5 },
