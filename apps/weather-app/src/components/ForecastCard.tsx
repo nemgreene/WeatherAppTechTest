@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Grid2, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import {
   dateFormat,
@@ -8,7 +8,6 @@ import {
   tempC,
   tempF,
 } from '../app/common/utilities';
-import IconLookup from '../app/icons/IconLookup';
 import MetricToggle from './MetricToggle';
 import ForecastIcon from './ForecastIcon';
 

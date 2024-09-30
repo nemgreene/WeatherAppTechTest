@@ -1,14 +1,10 @@
 import { Box, Grid2, Typography } from '@mui/material';
-import React, { useContext, useEffect } from 'react';
-import MetricButton from './MetricButton';
+import React, { useContext } from 'react';
 import MetricSlider from './MetricSlider';
 import ForecastCards from './ForecastCards';
 import {
   defaultColumnSpacing,
-  defaultGap,
-  defaultPadding,
   defaultRowSpacing,
-  LocationInterface,
   MetricContext,
   MetricContextInterface,
   tempC,
@@ -17,7 +13,7 @@ import {
 import MetricCard from './MetricCard';
 import RoundedButton from './RoundedButton';
 import { useTheme } from '@emotion/react';
-const { DateTime } = require('luxon');
+import { DateTime } from 'luxon';
 
 export default function Dash({
   data,

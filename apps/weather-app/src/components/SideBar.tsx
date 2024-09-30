@@ -1,4 +1,4 @@
-import { Box, Button, Input, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React, { SetStateAction, useContext } from 'react';
 import MetricToggle from './MetricToggle';
 import ForecastIcon from './ForecastIcon';
@@ -13,11 +13,9 @@ import {
   tempF,
 } from '../app/common/utilities';
 import SidebarInput from './SidebarInput';
-const { DateTime } = require('luxon');
 
 export default function SideBar({
   data,
-  location,
   setData,
 }: {
   location: LocationInterface;
@@ -43,8 +41,7 @@ export default function SideBar({
 
   const iconDims = { xs: 150, sm: 200, md: 200, lg: 250 };
 
-  const { toggle, setToggle }: MetricContextInterface =
-    useContext(MetricContext);
+  const { setToggle }: MetricContextInterface = useContext(MetricContext);
 
   return (
     <Box

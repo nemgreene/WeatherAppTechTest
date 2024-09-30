@@ -1,7 +1,6 @@
-import React, { SetStateAction } from 'react';
+import React from 'react';
 import { LocationInterface } from '../app/common/utilities';
-import { Box, CircularProgress, Typography } from '@mui/material';
-import SidebarInput from './SidebarInput';
+import { Box, Typography } from '@mui/material';
 import NorthWestIcon from '@mui/icons-material/NorthWest';
 
 // type LocationQueryState = 'awaiting' | 'accepted' | 'rejected' | 'invalid';

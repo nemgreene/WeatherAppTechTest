@@ -1,17 +1,14 @@
 'use client';
-import { Box, Paper, Typography, useTheme } from '@mui/material';
-import styles from './page.module.css';
+import { Box } from '@mui/material';
 import SideBar from '../components/SideBar';
 import Dash from '../components/Dash';
-import { PropsWithChildren, Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   LocationInterface,
   locationOptions,
   MetricContext,
 } from './common/utilities';
-import axios from 'axios';
-import { ApiClient, ApiClientInterface } from './common/ApiClient';
-import { ToastContainer } from 'react-toastify';
+import { ApiClient } from './common/ApiClient';
 import SideBarFallback from '../components/SideBarFallback';
 import DashFallback from '../components/DashFallback';
 
@@ -26,12 +23,12 @@ export default function Index() {
 
   const client = new ApiClient();
 
-  const fetchWeather = async (location?: string) => {
-    const res = await client.getWeather({ location });
-    setData(res.data);
-  };
-
   useEffect(() => {
+    const fetchWeather = async (location?: string) => {
+      const res = await client.getWeather({ location });
+      setData(res.data);
+    };
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position: GeolocationPosition) => {

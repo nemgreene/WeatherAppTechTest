@@ -1,13 +1,7 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Box, Card, Typography } from '@mui/material';
 import React, { useContext } from 'react';
-import { TypePredicateKind } from 'typescript';
-import MetricSlider from './MetricSlider';
 import MetricToggle from './MetricToggle';
-import {
-  MetricContext,
-  MetricContextInterface,
-  tempF,
-} from '../app/common/utilities';
+import { MetricContext, MetricContextInterface } from '../app/common/utilities';
 
 export default function MetricCard({
   value1,

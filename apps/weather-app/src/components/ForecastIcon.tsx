@@ -1,8 +1,7 @@
 import { Box } from '@mui/material';
-import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import IconLookup from '../app/icons/IconLookup';
-import { useSpring, animated, to } from '@react-spring/web';
+import { useSpring, animated } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 export default function ForecastIcon({
   iconName,

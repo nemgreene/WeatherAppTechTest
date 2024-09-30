@@ -1,9 +1,8 @@
-import axios from 'axios';
-import { showToast, WeatherApiResponse } from './utilities';
-import data from './dummy.json';
+import axios, { AxiosHeaders } from 'axios';
+import { showToast } from './utilities';
 interface RequestData {
   url: string;
-  headers?: any;
+  headers?: AxiosHeaders;
   params?: any;
 }
 

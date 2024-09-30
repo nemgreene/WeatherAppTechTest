@@ -1,4 +1,4 @@
-import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import './global.css';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import theme from './styles/theme';

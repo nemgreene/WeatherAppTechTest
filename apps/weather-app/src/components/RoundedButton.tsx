@@ -1,5 +1,5 @@
 import { useTheme } from '@emotion/react';
-import { Button, IconButton, Theme, ThemeOptions } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 import { JsxElement } from 'typescript';
 

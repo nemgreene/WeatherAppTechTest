@@ -1,4 +1,4 @@
-import { Box, Grid2 } from '@mui/material';
+import { Grid2 } from '@mui/material';
 import React from 'react';
 import ForecastCard from './ForecastCard';
 import {
@@ -6,7 +6,7 @@ import {
   defaultRowSpacing,
 } from '../app/common/utilities';
 
-export default function ForecastCards({ data }: { data: {}[] }) {
+export default function ForecastCards({ data }: { data: any[] }) {
   return (
     <Grid2
       container
