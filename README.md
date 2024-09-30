@@ -112,6 +112,7 @@ Product Backlog, completed tasks indicated by ~~strikethrough~~:
 #### Outside scope
 
 - Location is stored in state, add a button to toggle the user back to their location at any point in user journey
+- App state when no API key is present (User inputs apiKey)
 - Allow location prompt is currently not keybaord accesible. This must be handled for keybaord only users
 - Testing. Description of these can be found in apps\weather-app-e2e\src\example.spec.ts
 - CI/CD pipeline with Github Action
