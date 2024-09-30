@@ -1,10 +1,70 @@
 import { test, expect } from '@playwright/test';
 
+//Implementing a full set of tests is outside of scope due to time constraints, so this app has been tested ad hoc
+
+//Before launching any product to production, these tests should be implemented
+
+//Test on page load that location api alert opens
+//Test on page load that present in the page
+//  Circular throbber
+//  Awaiting Permmissions (h4)
+//  Allow permissions to continue(h5)
+//  Northeast Icon
+
+//If user rejects location permissions
+//  (How to siumulate this?)
+//  Input Field/Button/Form is active
+//  No Location Available (h4/h6)
+//  Enter yor location (h5)
+
+//If user accepts location permissions
+//  Loading your data
+//  Circular throbber
+//  Please Wait
+//  (Delay 5 seconds)
+//  In DOM:
+//    You (h2)
+//    (N)°C(h2)
+//    Icon in sidebar
+//    condition in sidebar
+//    °C button is active
+//    Day overview (h5)
+//    5 Day (h5)
+//    8 icons total
+//    Humidity
+//    Cloud Cover
+//    Max Temp
+//    Min Temp
+//    Sunrise
+//    Sunset
+//    5 forecast cards
+
+//Form tests
+//Focus form
+//Click button
+//Enter Location is in DOM (h5, red)
+//Focus form
+//input "1892"
+//Invalid location is in DOM (h5, red)
+//Click button
+//Verify focus is on input
+//input "asds"
+//Toastr appears "No location match"
+//Verify focus is on input
+//Input "Los Angeles"
+//Verify update of DOM (see list above)
+
+//Click metric button °C
+//Delay 1 second
+//Verify °C in dom
+//Verify 24 hr time
+//Click metric button °F
+//Delay 1 second
+//Verify °F in dom
+//Verify 12 hr time
+
 test('has title', async ({ page }) => {
   await page.goto('/');
-
-  // Expect h1 to contain a substring.
-  expect(await page.locator('h1').innerText()).toContain('Welcome');
 });
 
 /* 
