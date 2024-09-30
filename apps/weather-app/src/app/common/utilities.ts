@@ -29,14 +29,18 @@ export interface WeatherApiResponse {
   currentConditions: any;
 }
 
-export const MetricContext = createContext<
-  | {
-      client: ApiClientInterface;
-      toggle: boolean;
-      setToggle: Dispatch<SetStateAction<boolean>>;
-    }
-  | undefined
->(undefined);
+export interface MetricContextInterface {
+  client: ApiClientInterface | undefined;
+  toggle: boolean;
+  setToggle: Dispatch<SetStateAction<boolean>>;
+}
+
+export const MetricContext = createContext<MetricContextInterface>({
+  client: undefined,
+  toggle: true,
+  setToggle: () => {},
+});
+
 export const tempF = (value: number) => `${Math.round(value)}°F`;
 export const tempC = (value: number) =>
   `${Math.round(((value - 32) * 5) / 9)}°C`;

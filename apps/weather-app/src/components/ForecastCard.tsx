@@ -4,6 +4,7 @@ import {
   dateFormat,
   dateFromEpoch,
   MetricContext,
+  MetricContextInterface,
   tempC,
   tempF,
 } from '../app/common/utilities';
@@ -14,8 +15,8 @@ import ForecastIcon from './ForecastIcon';
 export default function ForecastCard({ data }: any) {
   const { datetimeEpoch, conditions, tempmax, tempmin } = data;
   const date = dateFromEpoch(datetimeEpoch);
-  const context = useContext(MetricContext);
-  const { setToggle } = context ? context : {};
+  const { toggle, setToggle }: MetricContextInterface =
+    useContext(MetricContext);
   return (
     <Card
       onClick={() => {

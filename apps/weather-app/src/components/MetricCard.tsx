@@ -3,7 +3,11 @@ import React, { useContext } from 'react';
 import { TypePredicateKind } from 'typescript';
 import MetricSlider from './MetricSlider';
 import MetricToggle from './MetricToggle';
-import { MetricContext, tempF } from '../app/common/utilities';
+import {
+  MetricContext,
+  MetricContextInterface,
+  tempF,
+} from '../app/common/utilities';
 
 export default function MetricCard({
   value1,
@@ -14,8 +18,7 @@ export default function MetricCard({
   value1: number | string;
   value2: number | string;
 }) {
-  const context = useContext(MetricContext);
-  const { setToggle } = context ? context : {};
+  const { setToggle }: MetricContextInterface = useContext(MetricContext);
   return (
     <Card
       onClick={() => {

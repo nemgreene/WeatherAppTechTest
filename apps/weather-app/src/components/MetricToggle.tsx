@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
-import { MetricContext } from '../app/common/utilities';
+import { MetricContext, MetricContextInterface } from '../app/common/utilities';
 import { useSpring, animated, to } from '@react-spring/web';
 
 export default function MetricToggle({
@@ -12,8 +12,8 @@ export default function MetricToggle({
   value2: string;
   // variant: string;
 } & any) {
-  const context = useContext(MetricContext);
-  const { toggle } = context ? context : {};
+  const { toggle, setToggle }: MetricContextInterface =
+    useContext(MetricContext);
   const [{ x, o1, o2 }, api] = useSpring(() => ({
     x: -100,
     o1: 0,

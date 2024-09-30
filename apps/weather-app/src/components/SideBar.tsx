@@ -8,6 +8,7 @@ import {
   dateFromEpoch,
   LocationInterface,
   MetricContext,
+  MetricContextInterface,
   tempC,
   tempF,
 } from '../app/common/utilities';
@@ -42,8 +43,8 @@ export default function SideBar({
 
   const iconDims = { xs: 150, sm: 200, md: 200, lg: 250 };
 
-  const context = useContext(MetricContext);
-  const { setToggle } = context ? context : {};
+  const { toggle, setToggle }: MetricContextInterface =
+    useContext(MetricContext);
 
   return (
     <Box

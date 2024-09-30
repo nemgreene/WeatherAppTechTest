@@ -10,6 +10,7 @@ import {
   defaultRowSpacing,
   LocationInterface,
   MetricContext,
+  MetricContextInterface,
   tempC,
   tempF,
 } from '../app/common/utilities';
@@ -34,8 +35,8 @@ export default function Dash({
     ? DateTime.fromSeconds(sunsetEpoch)
     : DateTime.now();
 
-  const context = useContext(MetricContext);
-  const { toggle, setToggle } = context ? context : {};
+  const { toggle, setToggle }: MetricContextInterface =
+    useContext(MetricContext);
   const theme: any = useTheme();
   return (
     <Box
